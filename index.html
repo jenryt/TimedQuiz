@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Timed Quiz</title>
+        <link rel="reset" href="./Assets/css/reset.css">
+        <link rel="stylesheet" href="./Assets/css/style.css">
+    </head>
+    <body>
+        <div class="scores">View Highscores</div>
+
+        <div class="timer">You have 100 seconds </div>
+
+        <div class="container">
+            <div class="startScreen">
+                <h1>Welcome To The Challenge!</h1>
+                <p>Here, you'll be given a series of multiple choice questions asking you the capital city of a country.<br>
+                    Please select only "ONE" correct answer. You are given total of 100 seconds to answer all the questions.<br>
+                    Keep in mind, a wrong answer will penalize your time by 10 second. 
+                    Each correct answer will yield 10 pionts toward your final score, and each remain second will be added to your final score as well.<br>Good Luck! </p>
+                <button id = "start">Let's Go!</button>
+            </div>
+            <div class="qScreen">
+                <div class="qTitle"></div>
+                <div class="choices">
+                    <div class="choice one" data-choice="1"></div>
+                    <div class="choice two" data-choice="2"></div>
+                    <div class="choice three" data-choice="3"></div>
+                    <div class="choice four" data-choice="4"></div>
+                </div>
+                <div class="answerMsg"></div>
+            </div>
+            <div class="endScreen">
+                <div class="showScore"></div>
+                <input id="userInitial" type="text" placeholder="Please type your initinal" />
+            </div>
+        </div>
+
+        <script src="./Assets/js/script.js"></script>
+
+    </body>
+    </html>
+
+
