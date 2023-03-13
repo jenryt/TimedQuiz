@@ -1,6 +1,6 @@
 const container = document.querySelector(".container");
 const startScreen = document.querySelector(".startScreen");
-const startbnt = document.querySelector("#start");
+const startBtn = document.querySelector("#start");
 const timerEl = document.querySelector(".timer");
 
 const qScreen = document.querySelector(".qScreen");
@@ -12,18 +12,20 @@ const choice4 = document.querySelector(".four");
 const answerMsg = document.querySelector(".answerMsg");
 
 const endScreen = document.querySelector(".endScreen");
-const displayScore = document.querySelector('.showScore');
+const showScore = document.querySelector('.showScore');
 const userInitial = document.querySelector('#userInitial');
 
-let qIndex = 0;
+const retryBtn = document.querySelector('#tryAgain');
 
+let qIndex = 0;
+let correctAns = 0;
 let quizTime = 100;
 let timeInt;
 
 qScreen.style.display = 'none';
 endScreen.style.display = 'none';
 // When the start button is clicked
-startbnt.addEventListener('click', beginQuiz)
+startBtn.addEventListener('click', beginQuiz)
 
 function beginQuiz() {
   startScreen.style.display = "none";
@@ -59,7 +61,9 @@ container.addEventListener('click', function(event){
         answerMsg.textContent = "Wrong!";
         navQuiz();
       } else{
+        correctAns ++;
         answerMsg.textContent = "Correct!";
+        console.log('test4', correctAns*10);
         navQuiz();
       }
     }
@@ -81,11 +85,12 @@ function quizEnd() {
   qScreen.style.display = 'none';
   timerEl.style.display = 'none';
   endScreen.style.display = 'block';
-  displayScore.textContent = 'your score';
-  // userInitial.style.display = 'block';
+  showScore.textContent = `You final score is ${correctAns*10} out of 110 points.`;
 }
 
-
+// retryBtn.addEventListener('click', function(){
+//   beginQuiz();
+// });
 
 // 11 questions with answer: objects in an array
   const questions = [

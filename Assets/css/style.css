@@ -2,6 +2,13 @@ body{
     font-family: 'Gill Sans', Arial, sans-serif;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .container>div {
     color:rgb(41, 38, 35);
     width: 50%;
@@ -23,10 +30,13 @@ p {
     font-size: 20px;
 }
 
-.startScreen {
+.startScreen,
+.qScreen,
+.endScreen {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .startScreen>button {
@@ -54,13 +64,6 @@ p {
     right:10%;
     font-size: 24px;
     color: rgb(103, 78, 118);
-}
-
-.qScreen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 
 .qTitle {
@@ -94,4 +97,30 @@ p {
     color:rgb(103, 78, 118);
     font-size: 30px;
     margin-top: 10px;
+}
+
+.showScore {
+    font-size: 30px;
+}
+
+#userInitial {
+    margin-top: 10px;
+    width: 80%;
+    height: 6vh;
+    background-color:rgb(155, 141, 164);
+    color: white;
+    font-size: 27px;
+    border-radius: 6px;
+} 
+
+#tryAgain {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(103, 78, 118);
+    width: 50%;
+    height: 50px;
+    border-radius: 15px;
+    border: 1px solid rgb(103, 78, 118);
+    margin-top: 24%;
 }
