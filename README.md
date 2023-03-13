@@ -15,5 +15,5 @@ Working as an individual to create a timed quiz.
 * It is done when users are given the choice to save their initials and score after the quiz ends.
 ## Assets
 
-The following link is to the website for password generator. 
+The following link is to the website for quiz. 
 https://jenryt.github.io/TimedQuiz/
