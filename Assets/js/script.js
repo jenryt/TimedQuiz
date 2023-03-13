@@ -2,6 +2,10 @@ const container = document.querySelector(".container");
 const startScreen = document.querySelector(".startScreen");
 const startBtn = document.querySelector("#start");
 const timerEl = document.querySelector(".timer");
+const viewScores = document.querySelector(".viewScores");
+const preAttemptRec = document.querySelector(".preAttemptRec");
+const preAttempt = document.querySelector(".preAttempt");
+const closeBtn = document.querySelector("#closeBtn");
 
 const qScreen = document.querySelector(".qScreen");
 const qTitle = document.querySelector(".qTitle");
@@ -13,14 +17,16 @@ const answerMsg = document.querySelector(".answerMsg");
 
 const endScreen = document.querySelector(".endScreen");
 const showScore = document.querySelector('.showScore');
-const userInitial = document.querySelector('#userInitial');
-
+const submitBtn = document.querySelector('#submit');
 const retryBtn = document.querySelector('#tryAgain');
 
 let qIndex = 0;
 let correctAns = 0;
 let quizTime = 100;
 let timeInt;
+let finScore;
+let lastUserIn;
+let lastUserScore;
 
 qScreen.style.display = 'none';
 endScreen.style.display = 'none';
@@ -82,15 +88,50 @@ function myTimer() {
 }
 
 function quizEnd() {
+  finScore = correctAns*10;
   qScreen.style.display = 'none';
   timerEl.style.display = 'none';
   endScreen.style.display = 'block';
-  showScore.textContent = `You final score is ${correctAns*10} out of 110 points.`;
+  showScore.textContent = `Your final score is ${finScore} out of 110 points.`;
 }
 
-// retryBtn.addEventListener('click', function(){
-//   beginQuiz();
-// });
+submitBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  let userInitial = document.querySelector('#userInitial').value;
+  localStorage.setItem("userInitial", JSON.stringify(userInitial));
+  localStorage.setItem("score", finScore);
+  document.querySelector("#userInitial").value = '';
+});
+
+viewScores.addEventListener("click", function(event){
+    preAttemptRec.style.display = 'block';
+    renderLastScore()
+});
+
+function renderLastScore() {
+  if(!localStorage.getItem('userInitial') || !localStorage.getItem('score')){
+    preAttempt.textContent = "Oops, there is no record available" 
+  } else {
+    preAttempt.textContent = `User ${localStorage.getItem('userInitial')} scored ${localStorage.getItem('score')} point(s)`; 
+  };
+  // closeBtn.addEventListener("click", function(event){
+  //   preAttemptRec.style.display ='none';
+  // });
+};
+
+
+
+
+
+
+
+
+retryBtn.addEventListener('click', function(){
+  console.log("test4:clicked");
+  history.go(0);
+});
+
 
 // 11 questions with answer: objects in an array
   const questions = [
