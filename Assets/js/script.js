@@ -44,6 +44,10 @@ function beginQuiz() {
 function navQuiz() {
   console.log("nav quiz", qIndex);
   if (qIndex == 0 || qIndex < questions.length){
+    if(answerMsg.textContent){
+      console.log(answerMsg.textContent," textConent");
+      answerMsg.textContent = " ";
+    }
     qTitle.textContent = questions[qIndex].question;
     choice1.textContent = questions[qIndex].options[0];
     choice2.textContent = questions[qIndex].options[1];
@@ -63,14 +67,19 @@ container.addEventListener('click', function(event){
     if(element.matches('.choice')){
       console.log('test3', `click on ${element.innerHTML}`, `answer is ${questions[qIndex-1].answer}`); //<---
       if (element.innerHTML !== questions[qIndex-1].answer) {
-        quizTime -= 10; //subtrack time 
         answerMsg.textContent = "Wrong!";
-        navQuiz();
+        setTimeout(() => {
+          console.log("Delayed for 1 second.");
+          navQuiz();
+        }, "500");
+        quizTime -= 10; //subtrack time 
       } else{
         correctAns ++;
         answerMsg.textContent = "Correct!";
-        console.log('test4', correctAns*10);
-        navQuiz();
+        setTimeout(() => {
+          console.log("Delayed for 1 second.");
+          navQuiz();
+        }, "500");
       }
     }
 });  
