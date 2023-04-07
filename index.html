@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Timed Quiz</title>
-        <link rel="reset" href="./Assets/css/reset.css">
-        <link rel="stylesheet" href="./Assets/css/style.css">
-    </head>
-    <body>
-        <div class="viewScores">View Highscores
-            <div class="preAttemptRec">
-                <div>Previous Attempt</div>
-                <div class="preAttempt"></div>
-                <!-- <button id="closeBtn">Close</button> -->
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timed Quiz</title>
+    <link rel="reset" href="./Assets/css/reset.css" />
+    <link rel="stylesheet" href="./Assets/css/style.css" />
+  </head>
+  <body>
+    <div class="viewScores">
+      View Highscores
+      <div class="preAttemptRec">
+        <div>Previous Attempt</div>
+        <div class="preAttempt"></div>
+        <!-- <button id="closeBtn">Close</button> -->
+      </div>
+    </div>
+
+    <div class="timer">You have 100 seconds</div>
+
+    <div class="container">
+      <div class="startScreen">
+        <h1>Welcome To The Challenge!</h1>
+        <p>
+          Here, you'll be given a series of multiple choice questions asking you
+          the capital city of a country. Please select only "ONE" correct
+          answer.<br />You are given a total of 100 seconds to answer all the
+          questions. Keep in mind, a wrong answer will penalize your time by 10
+          seconds. Each correct answer will yield 10 points toward your final
+          score.<br />Good Luck!
+        </p>
+        <button id="start">Let's Go!</button>
+      </div>
+      <div class="qScreen">
+        <div class="qTitle"></div>
+        <div class="choices">
+          <div class="choice one" data-choice="1"></div>
+          <div class="choice two" data-choice="2"></div>
+          <div class="choice three" data-choice="3"></div>
+          <div class="choice four" data-choice="4"></div>
         </div>
-
-        <div class="timer">You have 100 seconds </div>
-
-        <div class="container">
-            <div class="startScreen">
-                <h1>Welcome To The Challenge!</h1>
-                <p>Here, you'll be given a series of multiple choice questions asking you the capital city of a country. 
-                    Please select only "ONE" correct answer.<br>You are given a total of 100 seconds to answer all the questions.
-                    Keep in mind, a wrong answer will penalize your time by 10 seconds. 
-                    Each correct answer will yield 10 points toward your final score.<br>Good Luck! </p>
-                <button id = "start">Let's Go!</button>
-            </div>
-            <div class="qScreen">
-                <div class="qTitle"></div>
-                <div class="choices">
-                    <div class="choice one" data-choice="1"></div>
-                    <div class="choice two" data-choice="2"></div>
-                    <div class="choice three" data-choice="3"></div>
-                    <div class="choice four" data-choice="4"></div>
-                </div>
-                <div class="answerMsg"></div>
-            </div>
-            <div class="endScreen">
-                <div class="showScore"></div>
-                <div class="userInitial">
-                    <input id="userInitial" type="text" placeholder="Please enter your initinal" />
-                    <button id="submit">submit</button>
-                </div>
-                <button id="tryAgain">Let's Try Again!</button>
-            </div>
+        <div class="answerMsg"></div>
+      </div>
+      <div class="endScreen">
+        <div class="showScore"></div>
+        <div class="userInitial">
+          <input
+            id="userInitial"
+            type="text"
+            placeholder="Please enter your initinal"
+          />
+          <button id="submit">submit</button>
         </div>
+        <button id="tryAgain">Let's Try Again!</button>
+      </div>
+    </div>
 
-        <script src="./Assets/js/script.js"></script>
-
-    </body>
-    </html>
-
-
+    <script src="./Assets/js/script.js"></script>
+  </body>
+</html>
