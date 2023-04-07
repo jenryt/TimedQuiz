@@ -87,7 +87,7 @@ function myTimer() {
   timeInt = setInterval(function() {
     quizTime--;
     timerEl.textContent = `${quizTime} seconds left`;
-    if(quizTime === 0){
+    if(quizTime <= 0){
       clearInterval(timeInt);
       quizEnd();
     }
@@ -122,49 +122,6 @@ function renderLastScore() {
   } else {
     preAttempt.textContent = `User ${localStorage.getItem('userInitial')} scored ${localStorage.getItem('score')} point(s)`; 
   };
-  // // //================
-  // let initials = [];
-  // let scores = [];
-  
-  // //   let userInitial = document.querySelector('#userInitial');
-  // //   finScore
-  // initials.push(userInitial.value);
-  // scores.push(finScore);
-
-  // userInitial.value='';
-
-  // submitBtn.addEventListener("click", function(event) {
-  //   event.preventDefault();
-  //   let prevUserIns = [];
-  //   let prevUserScore = [];
-  
-  //   localStorage.setItem("userInitial", JSON.stringify(userInitial));
-  //   localStorage.setItem("score", JSON.stringify(finScore));
-  
-  //   prevUserIns.push('JSON.stringify(userInitial)');
-  //   prevUserScore.push(JSON.stringify(finScore));
-  
-  //   console.log(prevUserIns);
-  //   // let storedInis = JSON.parse(localStorage.getItem("userInitial"));
-  //   // let storedScores = JSON.parse(localStorage.getItem("score"));
-  //   document.querySelector("#userInitial").value = '';
-  // });
-  
-  // viewScores.addEventListener("click", function(event){
-  //   preAttemptRec.style.display = 'block';
-  //   renderLastScore()
-  // });
-  
-  // function renderLastScore() {
-  //   if(!localStorage.getItem('userInitial') || !localStorage.getItem('score')){
-  //     preAttempt.textContent = "Oops, there is no record available" 
-  //   } else {
-  //     prevUserIns.forEach(function(users){
-  //       console.log(users);
-  //     })
-  //     preAttempt.textContent = `User ${localStorage.getItem('userInitial')} scored ${localStorage.getItem('score')} point(s)`; 
-  //   };
-  // //==========
 };
 
 
