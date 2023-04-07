@@ -16,9 +16,9 @@ const choice4 = document.querySelector(".four");
 const answerMsg = document.querySelector(".answerMsg");
 
 const endScreen = document.querySelector(".endScreen");
-const showScore = document.querySelector('.showScore');
-const submitBtn = document.querySelector('#submit');
-const retryBtn = document.querySelector('#tryAgain');
+const showScore = document.querySelector(".showScore");
+const submitBtn = document.querySelector("#submit");
+const retryBtn = document.querySelector("#tryAgain");
 
 let qIndex = 0;
 let correctAns = 0;
@@ -26,14 +26,14 @@ let quizTime = 100;
 let timeInt;
 let finScore;
 
-qScreen.style.display = 'none';
-endScreen.style.display = 'none';
+qScreen.style.display = "none";
+endScreen.style.display = "none";
 // When the start button is clicked
-startBtn.addEventListener('click', beginQuiz)
+startBtn.addEventListener("click", beginQuiz);
 
 function beginQuiz() {
   startScreen.style.display = "none";
-  qScreen.style.display = 'block';
+  qScreen.style.display = "block";
   myTimer();
   navQuiz();
 }
@@ -41,9 +41,9 @@ function beginQuiz() {
 // Navigate between questions
 function navQuiz() {
   console.log("nav quiz", qIndex);
-  if (qIndex == 0 || qIndex < questions.length){
-    if(answerMsg.textContent){
-      console.log(answerMsg.textContent," textConent");
+  if (qIndex == 0 || qIndex < questions.length) {
+    if (answerMsg.textContent) {
+      console.log(answerMsg.textContent, " textConent");
       answerMsg.textContent = " ";
     }
     qTitle.textContent = questions[qIndex].question;
@@ -51,43 +51,46 @@ function navQuiz() {
     choice2.textContent = questions[qIndex].options[1];
     choice3.textContent = questions[qIndex].options[2];
     choice4.textContent = questions[qIndex].options[3];
-    console.log('test1', questions[qIndex].answer)
+    console.log("test1", questions[qIndex].answer);
     qIndex = qIndex + 1;
-    console.log('test2', questions[qIndex-1].answer)
-    } else {
-      quizEnd();
-    }
+    console.log("test2", questions[qIndex - 1].answer);
+  } else {
+    quizEnd();
+  }
 }
 
 // eventListener for when to trigger question navigation function
-container.addEventListener('click', function(event){
+container.addEventListener("click", function (event) {
   const element = event.target;
-    if(element.matches('.choice')){
-      console.log('test3', `click on ${element.innerHTML}`, `answer is ${questions[qIndex-1].answer}`); //<---
-      if (element.innerHTML !== questions[qIndex-1].answer) {
-        answerMsg.textContent = "Wrong!";
-        setTimeout(() => {
-          console.log("Delayed for 1 second.");
-          navQuiz();
-        }, "500");
-        quizTime -= 10; //subtrack time 
-      } else{
-        correctAns ++;
-        answerMsg.textContent = "Correct!";
-        setTimeout(() => {
-          console.log("Delayed for 1 second.");
-          navQuiz();
-        }, "500");
-      }
+  if (element.matches(".choice")) {
+    console.log(
+      "test3",
+      `click on ${element.innerHTML}`,
+      `answer is ${questions[qIndex - 1].answer}`
+    ); //<---
+    if (element.innerHTML !== questions[qIndex - 1].answer) {
+      answerMsg.textContent = "Wrong!";
+      setTimeout(() => {
+        console.log("Delayed for 1 second.");
+        navQuiz();
+      }, "500");
+      quizTime -= 10; //subtrack time
+    } else {
+      correctAns++;
+      answerMsg.textContent = "Correct!";
+      setTimeout(() => {
+        console.log("Delayed for 1 second.");
+        navQuiz();
+      }, "500");
     }
-});  
-  
+  }
+});
 
 function myTimer() {
-  timeInt = setInterval(function() {
+  timeInt = setInterval(function () {
     quizTime--;
     timerEl.textContent = `${quizTime} seconds left`;
-    if(quizTime === 0){
+    if (quizTime <= 0) {
       clearInterval(timeInt);
       quizEnd();
     }
@@ -95,178 +98,97 @@ function myTimer() {
 }
 
 function quizEnd() {
-  finScore = correctAns*10;
-  qScreen.style.display = 'none';
-  timerEl.style.display = 'none';
-  endScreen.style.display = 'block';
+  finScore = correctAns * 10;
+  qScreen.style.display = "none";
+  timerEl.style.display = "none";
+  endScreen.style.display = "block";
   showScore.textContent = `Your final score is ${finScore} out of 110 points.`;
 }
 
-submitBtn.addEventListener("click", function(event) {
+submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
-  let userInitial = document.querySelector('#userInitial');
+  let userInitial = document.querySelector("#userInitial");
   localStorage.setItem("userInitial", JSON.stringify(userInitial.value));
   localStorage.setItem("score", finScore);
-  userInitial.value = '';
+  userInitial.value = "";
 });
 
-viewScores.addEventListener("click", function(event){
-    preAttemptRec.style.display = 'block';
-    renderLastScore()
+viewScores.addEventListener("click", function (event) {
+  preAttemptRec.style.display = "block";
+  renderLastScore();
 });
 
 function renderLastScore() {
-  if(!localStorage.getItem('userInitial') || !localStorage.getItem('score')){
-    preAttempt.textContent = "Oops, there is no record available" 
+  if (!localStorage.getItem("userInitial") || !localStorage.getItem("score")) {
+    preAttempt.textContent = "Oops, there is no record available";
   } else {
-    preAttempt.textContent = `User ${localStorage.getItem('userInitial')} scored ${localStorage.getItem('score')} point(s)`; 
-  };
-  // // //================
-  // let initials = [];
-  // let scores = [];
-  
-  // //   let userInitial = document.querySelector('#userInitial');
-  // //   finScore
-  // initials.push(userInitial.value);
-  // scores.push(finScore);
+    preAttempt.textContent = `User ${localStorage.getItem(
+      "userInitial"
+    )} scored ${localStorage.getItem("score")} point(s)`;
+  }
+}
 
-  // userInitial.value='';
-
-  // submitBtn.addEventListener("click", function(event) {
-  //   event.preventDefault();
-  //   let prevUserIns = [];
-  //   let prevUserScore = [];
-  
-  //   localStorage.setItem("userInitial", JSON.stringify(userInitial));
-  //   localStorage.setItem("score", JSON.stringify(finScore));
-  
-  //   prevUserIns.push('JSON.stringify(userInitial)');
-  //   prevUserScore.push(JSON.stringify(finScore));
-  
-  //   console.log(prevUserIns);
-  //   // let storedInis = JSON.parse(localStorage.getItem("userInitial"));
-  //   // let storedScores = JSON.parse(localStorage.getItem("score"));
-  //   document.querySelector("#userInitial").value = '';
-  // });
-  
-  // viewScores.addEventListener("click", function(event){
-  //   preAttemptRec.style.display = 'block';
-  //   renderLastScore()
-  // });
-  
-  // function renderLastScore() {
-  //   if(!localStorage.getItem('userInitial') || !localStorage.getItem('score')){
-  //     preAttempt.textContent = "Oops, there is no record available" 
-  //   } else {
-  //     prevUserIns.forEach(function(users){
-  //       console.log(users);
-  //     })
-  //     preAttempt.textContent = `User ${localStorage.getItem('userInitial')} scored ${localStorage.getItem('score')} point(s)`; 
-  //   };
-  // //==========
-};
-
-
-
-
-
-
-retryBtn.addEventListener('click', function(){
+retryBtn.addEventListener("click", function () {
   console.log("test4:clicked");
   history.go(0);
 });
 
-
 // 11 questions with answer: objects in an array
-  const questions = [
-    {
-      question: 'What is the capital of Taiwan?',
-      options: [
-        'Taipei',
-        'Taichung',
-        'Hong Kong',
-        'Shanghai'], answer: 'Taipei'
-    },
-    {
-      question: 'What is the capital of Ukraine?',
-      options: [
-        'Luhansk',
-        'Donetsk',
-        'Kyiv',
-        'Odesa'], answer: 'Kyiv'
-    },
-    {
-      question: 'What is the capital of Japan?',
-      options: [
-        'Osaka',
-        'Tokyo',
-        'Sapporo',
-        'Kyoto'], answer: 'Tokyo'
-    },
-    {
-      question: 'What is the capital of South Korea?',
-      options: [
-        'Busan',
-        'Seoul',
-        'Jeju-si',
-        'Incheon'], answer: 'Seoul'
-    },
-    {
-      question: 'What is the capital of France?',
-      options: [
-        'Nice',
-        'Marseille',
-        'Lyon',
-        'Paris'], answer: 'Paris'
-    },
-    {
-      question: 'What is the capital of Egypt?',
-      options: [
-        'Cairo',
-        'Alexandria',
-        'Giza',
-        'Faiyum'], answer: 'Cairo'
-    },
-    {
-      question: 'What is the capital of Australia?',
-      options: [
-        'Canberra',
-        'Sydney',
-        'Brisbane',
-        'Perth'], answer: 'Canberra'
-    },
-    {
-      question: 'What is the capital of Argentina?',
-      options: [
-        'Mendoza',
-        'Buenos Aires',
-        'Córdoba',
-        'Rosario'], answer: 'Buenos Aires'
-    },
-    {
-      question: 'What is the capital of Italy?',
-      options: [
-        'Venice',
-        'Florence',
-        'Rome',
-        'Naples'], answer: 'Rome'
-    },
-    {
-      question: 'What is the capital of Germany?',
-      options: [
-        'Munich',
-        'Hamburg',
-        'Berlin',
-        'Frankfurt'], answer: 'Berlin'
-    },
-    {
-      question: 'What is the capital of United States?',
-      options: [
-        'Chicago',
-        'San Francisco',
-        'New York',
-        'Washington, D.C.'], answer: 'Washington, D.C.'
-    }
-  ]
-
+const questions = [
+  {
+    question: "What is the capital of Taiwan?",
+    options: ["Taipei", "Taichung", "Hong Kong", "Shanghai"],
+    answer: "Taipei",
+  },
+  {
+    question: "What is the capital of Ukraine?",
+    options: ["Luhansk", "Donetsk", "Kyiv", "Odesa"],
+    answer: "Kyiv",
+  },
+  {
+    question: "What is the capital of Japan?",
+    options: ["Osaka", "Tokyo", "Sapporo", "Kyoto"],
+    answer: "Tokyo",
+  },
+  {
+    question: "What is the capital of South Korea?",
+    options: ["Busan", "Seoul", "Jeju-si", "Incheon"],
+    answer: "Seoul",
+  },
+  {
+    question: "What is the capital of France?",
+    options: ["Nice", "Marseille", "Lyon", "Paris"],
+    answer: "Paris",
+  },
+  {
+    question: "What is the capital of Egypt?",
+    options: ["Cairo", "Alexandria", "Giza", "Faiyum"],
+    answer: "Cairo",
+  },
+  {
+    question: "What is the capital of Australia?",
+    options: ["Canberra", "Sydney", "Brisbane", "Perth"],
+    answer: "Canberra",
+  },
+  {
+    question: "What is the capital of Argentina?",
+    options: ["Mendoza", "Buenos Aires", "Córdoba", "Rosario"],
+    answer: "Buenos Aires",
+  },
+  {
+    question: "What is the capital of Italy?",
+    options: ["Venice", "Florence", "Rome", "Naples"],
+    answer: "Rome",
+  },
+  {
+    question: "What is the capital of Germany?",
+    options: ["Munich", "Hamburg", "Berlin", "Frankfurt"],
+    answer: "Berlin",
+  },
+  {
+    question: "What is the capital of United States?",
+    options: ["Chicago", "San Francisco", "New York", "Washington, D.C."],
+    answer: "Washington, D.C.",
+  },
+];
