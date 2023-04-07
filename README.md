@@ -1,18 +1,22 @@
 # TimedQuiz
 
-Working as an individual to create a timed quiz.
+Test your knowledge of capitals around the world with this fun and challenging quiz game! As soon as you load the page, you'll be given instructions on how to play.
 
-- As a developer, I want to create a timed quiz to JavaScript fundamentals that stores high scores
+## Rules
 
-## Acceptance Criteria
+- You have 100 seconds to answer all 11 questions.
+- Each correct answer is worth 10 points.
+- For each wrong answer, 10 seconds will be deducted from your timer.
+- The game will end when you answer all 11 questions or when the timer reaches zero.
 
-- It is done when users click on the start button, the timer starts and the first question is presented.
-- It is done when time is subtracted from the clock.
-- It is done when the next question is presented when users answer the current one.
-- It is done when a question is answered incorrectly, the users are presented with another question.
-- It is done when all questions are answered or when the timer reaches 0, the quiz is over.
-- It is done when users’ score are presented after the quiz ends.
-- It is done when users are given the choice to save their initials and score after the quiz ends.
+## How to Play
+
+1. Click the "Let's Go" button to begin.
+2. Read the question and select your answer from the multiple-choice options.
+3. Once you've selected your answer, you'll be prompted to the next question automatically.
+4. If you answer a question incorrectly, 10 seconds will be deducted from your timer.
+5. After the game is over, you'll see your total score and be asked to input your initials. After entering your initial, click the "Submit" button to save your score. You can view the highscores to see how you compare to your past score or other player.
+6. If you want to play again, click the "Let's Try Again" button.
 
 ## Assets
 
